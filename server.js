@@ -2,6 +2,10 @@ const express = require('express');
 const { Client } = require('pg');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const dotenv = require('dotenv');
+
+// Load environment variables from .env file
+dotenv.config();
 
 const app = express();
 const port = 3000;
@@ -15,7 +19,7 @@ app.use(express.static('.')); // Serve static files like HTML and CSS
 // PostgreSQL client setup with placeholder connection string
 // Replace 'YOUR_POSTGRES_CONNECTION_STRING' with your actual PostgreSQL connection string
 const client = new Client({
-    connectionString: 'postgresql://neondb_owner:npg_ExSU5l2CqGIs@ep-holy-hall-adkgjqw2-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require',
+    connectionString: process.env.DATABASE_LINK,
 });
 
 // Connect to PostgreSQL
